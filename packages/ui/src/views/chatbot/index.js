@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { FullPageChat } from 'flowise-embed-react'
+import { FullPageChat } from 'govchat-embed-react'
 import { useNavigate } from 'react-router-dom'
 
 // Project import
