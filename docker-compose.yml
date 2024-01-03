@@ -1,0 +1,37 @@
+version: '3'
+services:
+  flowise:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3002:3002"
+    depends_on: 
+      - db
+      - cache
+    environment: 
+      POSTGRES_DB: flowise
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 88343806
+      REDIS_HOST: cache
+  db:
+    image: postgres
+    environment: 
+      POSTGRES_DB: flowise
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 88343806
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  cache:
+    image: redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+volumes:
+  db_data:
+  redis_data:
+
+
+
+
